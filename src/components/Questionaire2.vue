@@ -193,7 +193,6 @@ export default {
     },
     // 提交
     handleSubmit() {
-      return console.log(this.pageParams);
       if (!(this.name && this.name.trim())) return this.scrollPageTo('name');
       if (!this.phone) return this.scrollPageTo('phone');
       if (!(/^1\d{10}$/.test(this.phone))) return this.scrollPageTo('phone', '请输入正确格式手机号!');
@@ -227,7 +226,7 @@ export default {
         duration: 5000,
       });
       console.log(postData);
-      this.btnLoading = true;
+      // this.btnLoading = true;
       // this.btnLoading = false;
     }
   },

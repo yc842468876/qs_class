@@ -225,8 +225,8 @@ export default {
         duration: 5000,
       });
       console.log(postData);
-      this.btnLoading = true;
-      this.btnLoading = false;
+      // this.btnLoading = true;
+      // this.btnLoading = false;
     }
   },
   created() {
