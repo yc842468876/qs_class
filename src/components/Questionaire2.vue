@@ -119,23 +119,6 @@ export default {
     }
   },
   methods: {
-    // 初始化数据
-    initFormData(data) {
-      data.map((v) => {
-        switch(v.type) {
-          case 1: 
-          case 3: 
-            this[v.name] = '';
-            break;
-          case 2:
-            this[v.name] = '';
-            this[`${v.name}_other`] = '';
-            break;
-          default: 
-            break;
-        }
-      });
-    },
     // 计算样式展示
     isGreen(item) {
       if (!item.required) return true;
@@ -193,6 +176,9 @@ export default {
     },
     // 提交
     handleSubmit() {
+      this.$router.push('/finished');
+      
+      return;
       if (!(this.name && this.name.trim())) return this.scrollPageTo('name');
       if (!this.phone) return this.scrollPageTo('phone');
       if (!(/^1\d{10}$/.test(this.phone))) return this.scrollPageTo('phone', '请输入正确格式手机号!');
@@ -231,7 +217,6 @@ export default {
     }
   },
   created() {
-    this.initFormData(qs_data);
     this.pageParams = this.$route.query || {};
     if (!this.pageParams.id) {
       // this.$router.push('/overDue');
