@@ -31,7 +31,7 @@
       />
     </van-cell-group>
     <van-notice-bar
-      text="5分：很满意; 4分：满意; 3分：一般; 2分：不满意; 1分：很不满意"
+      text="感谢您参加我们的公开课课程。请您抽出5分钟时间填写以下问卷，您的宝贵意见讲师我们未来持续改进的方向！本次问卷，满分5分。"
       left-icon="volume-o"
     />
     <ul>
@@ -103,7 +103,7 @@
 </template>
 
 <script>
-import qs_data from './data.js';
+import qs_data from './data_public.js';
 import $ from 'jquery';
 
 export default {
@@ -151,10 +151,6 @@ export default {
         default:
           return false;
       }
-    },
-    // 提示w完善信息
-    alertMsg() {
-      
     },
     // 页面弹至相对位置
     scrollPageTo(name, msg) {
