@@ -118,7 +118,7 @@ export default [
     name: 'q7',
     type: 2,
     required: false,
-    desc: '您还希望接受哪些培训：',
+    desc: '您还希望接受哪些培训：（可多选）',
     options: [
       {
         name: '人力资源',

@@ -3,12 +3,12 @@
     <van-cell-group>
       <van-field
         label="课程名称"
-        value="销售团队的有效管理"
+        v-model="courseName"
         disabled
       />
       <van-field
         label="开始日期"
-        value="2019-07-03"
+        v-model="startDate"
         disabled
       />
       <van-field
@@ -97,7 +97,7 @@
       </li>
     </ul>
     <div class="footer">
-      <van-button :loading="btnLoading" type="info" @click="handleSubmit" style="width: 80%">提交</van-button>
+      <van-button :loading="btnLoading" type="info" @click="handleSubmit" style="width: 80%; max-width: 768px">提交</van-button>
     </div>
   </div>
 </template>
@@ -105,11 +105,18 @@
 <script>
 import qs_data from './data_public.js';
 import $ from 'jquery';
+import moment from 'moment';
 
 export default {
-  name: 'Questionaire',
   data() {
     return {
+      // 课程信息
+      courseId: this.$route.query.courseId,
+      courseName: this.$route.query.courseName,
+      startDate: this.$route.query.startDate,
+      personId: this.$route.query.personId,
+      
+      // 问卷信息
       name: '', // 姓名
       phone: '', // 手机号
       qs_data: qs_data, // 问题数据
@@ -169,10 +176,10 @@ export default {
         console.log(e);
       }
     },
-    // 提交
+    // 提交问卷
     handleSubmit() {
-      if (!(this.name && this.name.trim())) return this.scrollPageTo('name');
-      if (!this.phone) return this.scrollPageTo('phone');
+      if (!(this.name && this.name.trim())) return this.scrollPageTo('name', '请输入姓名！');
+      if (!this.phone) return this.scrollPageTo('phone', '请输入手机号！');
       if (!(/^1\d{10}$/.test(this.phone))) return this.scrollPageTo('phone', '请输入正确格式手机号!');
 
       // 由于 forEach 不支持跳出循环, 所以使用 for
@@ -184,6 +191,7 @@ export default {
       };
 
       const postData = {
+        courseId: this.courseId,
         name: this.name,
         phone: this.phone,
       };
@@ -209,7 +217,11 @@ export default {
     }
   },
   created() {
-
+    // 问卷过期判断
+    if (moment() > moment(this.startDate).add(2, 'days')) {
+      console.log('isOverDue');
+      // this.$router.push('/overDue');
+    }
   }
 }
 </script>
