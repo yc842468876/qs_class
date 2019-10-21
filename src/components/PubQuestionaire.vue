@@ -31,9 +31,14 @@
       />
     </van-cell-group>
     <van-notice-bar
-      text="感谢您参加我们的公开课课程。请您抽出5分钟时间填写以下问卷，您的宝贵意见讲师我们未来持续改进的方向！本次问卷，满分5分。"
-      left-icon="volume-o"
-    />
+      :scrollable="false"
+      wrapable
+      style="text-align: left;"
+    >
+      <span>感谢您参加我们的公开课课程</span><br>
+      <span>请您抽出5分钟时间填写以下问卷，您的宝贵意见讲师我们未来持续改进的方向</span><br>
+      <span>本次问卷，满分5分</span>
+    </van-notice-bar>
     <ul>
       <li 
         class="qs_item" 
@@ -195,15 +200,17 @@ export default {
         name: this.name,
         phone: this.phone,
       };
+      // 员工 id
+      postData.personId = this.personId ? this.personId : null;
       // 问题答案整理
-      qs_data.map(v => {
+      qs_data.map((v, i)=> {
         if (v.type === 2) {
           let data = [];
           data =  this.answer[v.name] && this.answer[v.name].length ? this.answer[v.name] : data;
           data = this.answer[`${v.name}_other`] ? data.concat(this.answer[`${v.name}_other`]) : data;
-          postData[v.name] = data;
+          postData[`answer${i + 1}`] = data;
         } else {
-          postData[v.name] = this.answer[v.name];
+          postData[`answer${i + 1}`] = this.answer[v.name] || '';
         }
       });
 
