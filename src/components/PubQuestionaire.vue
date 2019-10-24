@@ -111,15 +111,17 @@
 import qs_data from './data_public.js';
 import $ from 'jquery';
 import moment from 'moment';
+import { getToken } from '../util/util';
+import request from '../util/request';
 
 export default {
   data() {
     return {
       // 课程信息
-      courseId: this.$route.query.courseId,
+      courseNo: this.$route.query.courseNo || '00607MCOUR',
       courseName: this.$route.query.courseName,
       startDate: this.$route.query.startDate,
-      personId: this.$route.query.personId,
+      assessPersonId: this.$route.query.assessPersonId,
       
       // 问卷信息
       name: '', // 姓名
@@ -183,6 +185,9 @@ export default {
     },
     // 提交问卷
     handleSubmit() {
+      request.post('/api/rest/ae/questionToAssess', {});
+
+      return;
       if (!(this.name && this.name.trim())) return this.scrollPageTo('name', '请输入姓名！');
       if (!this.phone) return this.scrollPageTo('phone', '请输入手机号！');
       if (!(/^1\d{10}$/.test(this.phone))) return this.scrollPageTo('phone', '请输入正确格式手机号!');
@@ -194,33 +199,35 @@ export default {
           return;
         }
       };
-
+      // 课程id、姓名、手机
       const postData = {
-        courseId: this.courseId,
+        courseNo: this.courseNo,
         name: this.name,
         phone: this.phone,
       };
       // 员工 id
-      postData.personId = this.personId ? this.personId : null;
+      postData.assessPersonId = this.assessPersonId ? this.assessPersonId : null;
+      // 问卷标记类型
+      postData.type = 'C';
       // 问题答案整理
       qs_data.map((v, i)=> {
         if (v.type === 2) {
           let data = [];
           data =  this.answer[v.name] && this.answer[v.name].length ? this.answer[v.name] : data;
           data = this.answer[`${v.name}_other`] ? data.concat(this.answer[`${v.name}_other`]) : data;
-          postData[`answer${i + 1}`] = data;
+          postData[`answer${i + 1}`] = JSON.stringify(data);
         } else {
           postData[`answer${i + 1}`] = this.answer[v.name] || '';
         }
       });
-
-      this.$notify({
-        message: JSON.stringify(postData),
-        duration: 5000,
-      });
-      console.log(postData);
-      // this.btnLoading = true;
-      // this.btnLoading = false;
+      // 提交请求
+      // request.post('/api/rest/ae/questionToAssess', postData).then(data => {
+      //   if (data && data.success) {
+      //     // this.$router.push('/finished');
+      //   } else {
+      //     this.$toast.fail( data && data.message || '提交失败！');
+      //   }
+      // });
     }
   },
   created() {
@@ -229,6 +236,9 @@ export default {
       console.log('isOverDue');
       // this.$router.push('/overDue');
     }
+    
+    // 获取 token, 供提交接口认证
+    getToken();
   }
 }
 </script>

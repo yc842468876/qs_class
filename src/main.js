@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router';
-import App from './App.vue'
-import { Button, NoticeBar, Field, Cell, CellGroup, RadioGroup, Radio, Checkbox, CheckboxGroup, Notify } from 'vant';
+import App from './App.vue';
+import { Button, NoticeBar, Field, Cell, CellGroup, RadioGroup, Radio, Checkbox, CheckboxGroup, Notify, Toast } from 'vant';
 //一个个link对象 - 分类
 import PubQuestionaire from '@/components/PubQuestionaire.vue'; // 公开课问卷
 import Questionaire2 from '@/components/Questionaire2.vue'; // 内训问卷
@@ -19,6 +19,7 @@ Vue.use(RadioGroup);
 Vue.use(Radio);
 Vue.use(Checkbox).use(CheckboxGroup);
 Vue.use(Notify);
+Vue.use(Toast);
 
 //安装插件
 Vue.use(VueRouter);//挂载属性
@@ -36,6 +37,7 @@ let router = new VueRouter({
   ]
 });
 
+console.log('process.env.NODE_ENV is ' + process.env.NODE_ENV);
 
 new Vue({
   router: router,
