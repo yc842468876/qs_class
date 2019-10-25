@@ -185,9 +185,6 @@ export default {
     },
     // 提交问卷
     handleSubmit() {
-      request.post('/api/rest/ae/questionToAssess', {});
-
-      return;
       if (!(this.name && this.name.trim())) return this.scrollPageTo('name', '请输入姓名！');
       if (!this.phone) return this.scrollPageTo('phone', '请输入手机号！');
       if (!(/^1\d{10}$/.test(this.phone))) return this.scrollPageTo('phone', '请输入正确格式手机号!');
@@ -220,14 +217,21 @@ export default {
           postData[`answer${i + 1}`] = this.answer[v.name] || '';
         }
       });
+      
+      // 提交按钮loading
+      this.btnLoading = true;
       // 提交请求
-      // request.post('/api/rest/ae/questionToAssess', postData).then(data => {
-      //   if (data && data.success) {
-      //     // this.$router.push('/finished');
-      //   } else {
-      //     this.$toast.fail( data && data.message || '提交失败！');
-      //   }
-      // });
+      request.post('/api/rest/ae/questionToAssess', postData).then(data => {
+        if (data && data.success) {
+          this.$router.push('/finished');
+        } else {
+          this.$toast.fail( data && data.message || '提交失败！');
+        }
+        this.btnLoading = false;
+      }).catch(e => {
+        console.log(e);
+        this.btnLoading = false;
+      });
     }
   },
   created() {
