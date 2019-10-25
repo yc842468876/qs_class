@@ -5,8 +5,7 @@ import { getToken } from './util';
 
 // 请求初始配置
 const request = axios.create({
-  // baseURL: process.env.NODE_ENV === 'develop' ? baseURL_test : baseURL_prd,
-  baseURL: '/api', // 由于跨域，故代理配置 可见真正 baseURL
+  baseURL: process.env.NODE_ENV === 'development' ? '/api' : baseURL_prd,
   timeout: 10000,
   headers: { 'Content-Type': 'application/json;charset=UTF-8' }
 });

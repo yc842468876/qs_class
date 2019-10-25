@@ -4,7 +4,7 @@ module.exports = {
   devServer: {
     proxy: {
       '/api': {
-        target: process.env.NODE_ENV === 'develop' ? config.baseURL_test : config.baseURL_prd,
+        target: config.baseURL_test,
         changeOrigin: true,
         ws: true,
         pathRewrite: {

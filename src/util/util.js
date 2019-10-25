@@ -11,8 +11,7 @@ export function getToken() {
   };
 
   const axios_getToken = axios.create({
-    // baseURL: process.env.NODE_ENV === 'develop' ? baseURL_test : baseURL_prd,
-    baseURL: '/api',
+    baseURL: process.env.NODE_ENV === 'development' ? '/api' : baseURL_prd,
     timeout: 10000,
     headers: {
       'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8',
