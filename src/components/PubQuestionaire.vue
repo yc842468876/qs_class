@@ -47,7 +47,7 @@
         :id="`form_${item.name}`"
       >
         <!-- 单选框 -->
-        <div :id="`form_${item.name}`" v-if="item.type===1">
+        <div v-if="item.type===1">
           <div :class="['item_title', isGreen(item) ? 'bg_green' : 'bg_orange', {'is_required': item.required}]">{{`${index+1}. ${item.desc}`}}</div>
           <div class="item_content">
             <van-radio-group v-model="answer[item.name]">
@@ -62,7 +62,7 @@
           </div>
         </div>
         <!-- 多选框 -->
-        <div :id="`form_${item.name}`" v-if="item.type===2">
+        <div v-if="item.type===2">
           <div :class="['item_title', isGreen(item) ? 'bg_green' : 'bg_orange', {'is_required': item.required}]">{{`${index+1}. ${item.desc}`}}</div>
           <div class="item_content">
             <van-checkbox-group v-model="answer[item.name]">
@@ -86,7 +86,7 @@
         </div>
         <!-- 多行输入 -->
         <!-- 多选框 -->
-        <div :id="`form_${item.name}`" v-if="item.type===3">
+        <div v-if="item.type===3">
           <div :class="['item_title', isGreen(item) ? 'bg_green' : 'bg_orange']">{{`${index+1}. ${item.desc}`}}</div>
           <div class="item_content">
             <van-field
@@ -179,8 +179,8 @@ export default {
         $('html, body').animate({
             scrollTop: scrollTop || 0,
         }, 800);
-      } catch (e) {
-        console.log(e);
+      } catch(error) {
+        throw error;
       }
     },
     // 提交问卷
@@ -195,7 +195,7 @@ export default {
           this.scrollPageTo(qs_data[i].name);
           return;
         }
-      };
+      }
       // 课程id、姓名、手机
       const postData = {
         courseNo: this.courseNo,
@@ -228,16 +228,16 @@ export default {
           this.$toast.fail( data && data.message || '提交失败！');
         }
         this.btnLoading = false;
-      }).catch(e => {
-        console.log(e);
+      }).catch(error => {
         this.btnLoading = false;
+        throw error;
       });
     }
   },
   created() {
     // 问卷过期判断
     if (moment() > moment(this.startDate).add(2, 'days')) {
-      console.log('isOverDue');
+      window.console.log('isOverDue');
       // this.$router.push('/overDue');
     }
     

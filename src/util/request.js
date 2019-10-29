@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { baseURL_test, baseURL_prd, getTokenParams } from '../config';
+import { baseURL_prd } from '../config';
 import { Toast } from 'vant';
 import { getToken } from './util';
 
