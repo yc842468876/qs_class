@@ -7,7 +7,9 @@ import { getToken } from './util';
 const request = axios.create({
   baseURL: process.env.NODE_ENV === 'development' ? '/api' : baseURL_prd,
   timeout: 10000,
-  headers: { 'Content-Type': 'application/json;charset=UTF-8' }
+  headers: {
+    'Content-Type': 'application/json;charset=UTF-8',
+  }
 });
 
 // 请求拦截器
@@ -61,7 +63,7 @@ request.interceptors.response.use(
           default:
             {
               Toast({
-                message: error.response.data.message || '系统错误，请联系管理员！',
+                message: error.response.data.error || '系统错误，请联系管理员！',
                 forbidClick: true
               })
             }

@@ -180,7 +180,7 @@ export default {
             scrollTop: scrollTop || 0,
         }, 800);
       } catch(error) {
-        throw error;
+        throw(error.toSring());
       }
     },
     // 提交问卷
@@ -230,7 +230,7 @@ export default {
         this.btnLoading = false;
       }).catch(error => {
         this.btnLoading = false;
-        throw error;
+        throw(error.toSring());
       });
     }
   },

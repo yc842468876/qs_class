@@ -2,7 +2,7 @@
  * baseURL
  */
 const baseURL_test = 'http://47.101.209.156:18080'; // 本地--口访问地址
-const baseURL_prd = 'http://47.101.209.156:18080'; // 发布--接口访问地址
+const baseURL_prd = '/'; // 发布--接口访问地址
 
 /**
  * 获取 token 相关参数
