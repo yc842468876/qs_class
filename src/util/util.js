@@ -12,7 +12,7 @@ export function getToken() {
 
   const axios_getToken = axios.create({
     baseURL: process.env.NODE_ENV === 'development' ? '/api' : baseURL_prd,
-    timeout: 10000,
+    timeout: 30000,
     headers: {
       'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8',
       'Authorization': 'Basic ' + Base64.encode(`${getTokenParams.clientId}:${getTokenParams.clientSecret}`),
