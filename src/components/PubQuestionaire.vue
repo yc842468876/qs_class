@@ -118,9 +118,10 @@ export default {
   data() {
     return {
       // 课程信息
-      courseNo: this.$route.query.courseNo || '00607MCOUR',
+      courseNo: this.$route.query.courseNo,
       courseName: this.$route.query.courseName,
       startDate: this.$route.query.startDate,
+      endDate: this.$route.query.endDate,
       assessPersonId: this.$route.query.assessPersonId,
       
       // 问卷信息
@@ -236,9 +237,8 @@ export default {
   },
   created() {
     // 问卷过期判断
-    if (moment() > moment(this.startDate).add(2, 'days')) {
-      window.console.log('isOverDue');
-      // this.$router.push('/overDue');
+    if (moment() > moment(this.endDate).add(2, 'days')) {
+      this.$router.push('/overDue');
     }
     
     // 获取 token, 供提交接口认证
