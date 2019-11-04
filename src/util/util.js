@@ -6,9 +6,10 @@ import { Base64 } from 'js-base64';
 export function getToken() {
   const postData = {
     username: getTokenParams.username,
-    password: getTokenParams.password,
+    password: process.env.NODE_ENV === 'development' ? getTokenParams.password : process.env.VUE_APP_GET_TOKEN_PASSWORD,
     grant_type: getTokenParams.grant_type,
   };
+  console.log('password', process.env.VUE_APP_GET_TOKEN_PASSWORD);
 
   const axios_getToken = axios.create({
     baseURL: process.env.NODE_ENV === 'development' ? '/api' : baseURL_prd,
