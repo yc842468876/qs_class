@@ -1,6 +1,6 @@
 import axios from 'axios';
 import qs from 'qs';
-import { baseURL_test, baseURL_prd, getTokenParams } from '../config';
+import { baseURL_prd, getTokenParams } from '../config';
 import { Base64 } from 'js-base64';
 
 export function getToken() {
@@ -25,7 +25,7 @@ export function getToken() {
       const access_token = res.data.access_token;
       localStorage.setItem('token', access_token);
     } else {
-      console.log('获取 Token 失败！')
+      window.console.log('获取 Token 失败！')
     }
   })
 }

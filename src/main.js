@@ -37,7 +37,7 @@ let router = new VueRouter({
   ]
 });
 
-console.log('process.env.NODE_ENV is ' + process.env.NODE_ENV);
+window.console.log('process.env.NODE_ENV is ' + process.env.NODE_ENV);
 
 new Vue({
   router: router,
