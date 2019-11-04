@@ -10,7 +10,7 @@ export default [
     name: 'q1',
     type: 1,
     required: true,
-    desc: '您对本次培训的整体满意度是：',
+    desc: '您对本次培训的整体满意度是？',
     options: [
       {
         name: 1,
@@ -82,7 +82,7 @@ export default [
     name: 'q4',
     type: 1,
     required: true,
-    desc: '您对课程助教服务的满意度是：',
+    desc: '您对课程助教服务的满意度是？',
     options: [
       {
         name: 1,
@@ -106,19 +106,19 @@ export default [
     name: 'q5',
     type: 3,
     required: false,
-    desc: '您参加本次培训的收获是：',
+    desc: '您参加本次培训的收获是？',
   },
   {
     name: 'q6',
     type: 3,
     required: false,
-    desc: '您对课程或讲师的建议是：',
+    desc: '您对课程或讲师的建议是？',
   },
   {
     name: 'q7',
     type: 2,
     required: false,
-    desc: '您还希望接受哪些培训：（可多选）',
+    desc: '您还希望接受哪些培训？（可多选）',
     options: [
       {
         name: '人力资源',

@@ -16,8 +16,8 @@
         v-model="name"
         required
         clearable
-        label="用户名"
-        placeholder="请输入用户名"
+        label="学员姓名"
+        placeholder="请输入学员姓名"
       />
       <van-field
         id="form_phone"
@@ -25,8 +25,8 @@
         required
         type="tel"
         clearable
-        label="手机号"
-        placeholder="请输入手机号"
+        label="手机号码"
+        placeholder="请输入手机号码"
         error-message=""
       />
     </van-cell-group>
@@ -36,7 +36,7 @@
       style="text-align: left;"
     >
       <span>感谢您参加我们的公开课课程</span><br>
-      <span>请您抽出5分钟时间填写以下问卷，您的宝贵意见讲师我们未来持续改进的方向</span><br>
+      <span>请您抽出5分钟时间填写以下问卷，您的宝贵意见将是我们未来持续改进的方向</span><br>
       <span>本次问卷，满分5分</span>
     </van-notice-bar>
     <ul>
