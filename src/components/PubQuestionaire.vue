@@ -22,7 +22,6 @@
       <van-field
         id="form_phone"
         v-model="phone"
-        required
         type="tel"
         clearable
         label="手机号码"
@@ -187,8 +186,8 @@ export default {
     // 提交问卷
     handleSubmit() {
       if (!(this.name && this.name.trim())) return this.scrollPageTo('name', '请输入姓名！');
-      if (!this.phone) return this.scrollPageTo('phone', '请输入手机号！');
-      if (!(/^1\d{10}$/.test(this.phone))) return this.scrollPageTo('phone', '请输入正确格式手机号!');
+      // if (!this.phone) return this.scrollPageTo('phone', '请输入手机号！');
+      if (this.phone && !(/^1\d{10}$/.test(this.phone))) return this.scrollPageTo('phone', '请输入正确格式手机号!');
 
       // 由于 forEach 不支持跳出循环, 所以使用 for
       for(let i = 0; i < qs_data.length; i++) {
