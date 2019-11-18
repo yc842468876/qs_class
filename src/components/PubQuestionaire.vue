@@ -235,8 +235,8 @@ export default {
     }
   },
   created() {
-    // 问卷过期判断
-    if (moment() > moment(this.endDate).add(2, 'days')) {
+    // 问卷过期判断, 两天过期需 +1 写法
+    if (moment() > moment(this.endDate).add(3, 'days')) {
       this.$router.push('/overDue');
     }
     
